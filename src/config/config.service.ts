@@ -27,6 +27,16 @@ export class ConfigService {
     this.envConfig = dotenv.parse(fs.readFileSync(envFile));
   }
 
+  printAll(strs: string | string[] | null) {
+    if (strs && typeof strs === "object") {
+      for (const s of strs) {
+        console.log(s);
+      }
+    } else if (typeof strs === "string") {
+      console.log(strs);
+    }
+  }
+
   get(key: string): string {
     return this.envConfig[key];
   }
